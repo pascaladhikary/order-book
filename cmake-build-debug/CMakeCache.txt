@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=/usr/local/lib/cmake/Boost-1.82.0
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/usr/local/include
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -282,6 +288,12 @@ SimpleOrderBook_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 SimpleOrderBook_SOURCE_DIR:STATIC=/Users/pascaladhikary/CLionProjects/SimpleOrderBook
 
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=/usr/local/lib/cmake/boost_headers-1.82.0
+
+//The directory containing a CMake configuration file for boost_optional.
+boost_optional_DIR:PATH=boost_optional_DIR-NOTFOUND
+
 //Value Computed by CMake
 gtest_BINARY_DIR:STATIC=/Users/pascaladhikary/CLionProjects/SimpleOrderBook/cmake-build-debug/OrderBookTests/lib/googletest
 
@@ -312,6 +324,8 @@ gtest_hide_internal_symbols:BOOL=OFF
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -445,6 +459,8 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Boost
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/local/lib/cmake/Boost-1.82.0/BoostConfig.cmake][c ][v1.82.0(1.82.0)]
 //Details about finding Python3
 FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9][cfound components: Interpreter ][v3.9.6()]
 //Details about finding Threads
@@ -480,6 +496,8 @@ _Python3_INTERPRETER_SIGNATURE:INTERNAL=7301ae0b2f711aa2dfe4b33aa9194530
 _Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
+//ADVANCED property for variable: boost_headers_DIR
+boost_headers_DIR-ADVANCED:INTERNAL=1
 cmake_package_name:INTERNAL=GTest
 //ADVANCED property for variable: gtest_build_samples
 gtest_build_samples-ADVANCED:INTERNAL=1
