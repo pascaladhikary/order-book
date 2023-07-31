@@ -24,4 +24,5 @@ public:
     BidAsk get_bid_ask() const;
 
     friend std::ostream& operator<<(std::ostream& os, const OrderBook& book);
+    friend std::ostream& operator<<(std::ostream& os, const OrderBook::BidAsk& ba);
 };

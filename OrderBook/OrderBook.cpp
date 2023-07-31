@@ -20,6 +20,21 @@ void OrderBook::add(int price, int amount, bool bid) {
     }
 }
 
+std::ostream &operator<<(std::ostream &os, const OrderBook::BidAsk &ba) {
+    auto print = [&](const OrderBook::BidAsk::Entry& e, const std::string& text) {
+        bool have_value = e.is_initialized();
+        if (have_value) {
+            auto value = e.get();
+            os << value.second << text << "s @ " << value.first;
+        } else {
+            os << "NO " << text;
+        }
+    };
+    print(ba.bid, "bid");
+    os << ", ";
+    return os;
+}
+
 std::ostream& operator<<(std::ostream& os, const OrderBook& book) {
     if (book.is_empty()) {
         os << "order book empty";

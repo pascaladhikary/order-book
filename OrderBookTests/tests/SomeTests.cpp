@@ -10,10 +10,10 @@ TEST(OrderBookTests, OrderBookEmptyByDefault)
 TEST(OrderBookTests, OrderAddition) {
     OrderBook book;
     book.add_bid(123, 456);
-    OrderBook::BidAsk bid_ask = book.get_bid_ask();
-    EXPECT_TRUE(bid_ask.bid.is_initialized());
+    OrderBook::BidAsk ba = book.get_bid_ask();
+    EXPECT_TRUE(ba.bid.is_initialized());
 
-    std::pair<int, int> bid = bid_ask.bid.get();
+    std::pair<int, int> bid = ba.bid.get();
     EXPECT_EQ(123, bid.first);
     EXPECT_EQ(456, bid.second);
 }
@@ -22,10 +22,10 @@ TEST (OrderBookTests, OrderRemoval) {
     OrderBook book;
     book.add_bid(123, 456);
     book.remove_bid(123, 156);
-    OrderBook::BidAsk bid_ask = book.get_bid_ask();
-    EXPECT_TRUE(bid_ask.bid.is_initialized());
+    OrderBook::BidAsk ba = book.get_bid_ask();
+    EXPECT_TRUE(ba.bid.is_initialized());
 
-    std::pair<int, int> bid = bid_ask.bid.get();
+    std::pair<int, int> bid = ba.bid.get();
     EXPECT_EQ(123, bid.first);
     EXPECT_EQ(456-156, bid.second);
 }
