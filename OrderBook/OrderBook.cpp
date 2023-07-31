@@ -33,6 +33,7 @@ std::ostream& operator<<(std::ostream& os, const OrderBook& book) {
     for (auto bid : book.bids) {
         os << bid.first << "\t" << bid.second ;
     }
+    return os;
 }
 
 OrderBook::BidAsk OrderBook::get_bid_ask() const {
@@ -48,5 +49,32 @@ OrderBook::BidAsk OrderBook::get_bid_ask() const {
         result.ask = *best_ask;
     }
 
+    return result;
+}
+
+void OrderBook::remove_bid(int price, int amount) {
+    remove(price, amount, true);
+}
+
+void OrderBook::remove_ask(int price, int amount) {
+    remove(price, amount, false);
+}
+
+void OrderBook::remove(int price, int amount, bool bid) {
+    std::map<int, int>& table = bid ? bids : asks;
+    auto it = table.find(price);
+    if (it != table.end()) {
+        it->second -= amount;
+        if (it->second == 0) {
+            table.erase(it);
+        }
+    }
+}
+
+boost::optional<int> OrderBook::BidAsk::spread() const {
+    boost::optional<int> result;
+    if (bid.is_initialized() && ask.is_initialized()) {
+        result = ask.get().first - bid.get().first;
+    }
     return result;
 }
