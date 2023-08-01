@@ -124,24 +124,17 @@ bool OrderBook::market_order(int amount, bool buy) {
         return false;
     }
 
-    // TODO: template this?
-    auto fwd = table.begin();
-    auto rev = table.rbegin();
-    while (amount) {
-        if (buy) {
-            int fill = std::min(amount, fwd->second);
+    auto fulfill = [&buy, &amount, this]<class T>(T it) {
+        while (amount) {
+            int fill = std::min(amount, it->second);
             amount -= fill;
-            auto temp = std::next(fwd);
-            remove(fwd->first, fill, !buy);
-            fwd = temp;
-        } else {
-            int fill = std::min(amount, rev->second);
-            amount -= fill;
-            auto temp = std::next(rev);
-            remove(rev->first, fill, !buy);
-            rev = temp;
+            auto temp = std::next(it);
+            remove(it->first, fill, !buy);
+            it = temp;
         }
-    }
+    };
+
+    buy ? fulfill(table.begin()) : fulfill(table.rbegin());
     return true;
 }
 
