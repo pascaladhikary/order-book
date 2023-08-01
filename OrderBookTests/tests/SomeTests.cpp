@@ -42,3 +42,17 @@ TEST(OrderBookTests, SpreadCalculated) {
     EXPECT_TRUE(spread.is_initialized());
     EXPECT_EQ(20, spread.get());
 }
+
+TEST(OrderBookTests, LimitOrder) {
+    OrderBook book;
+    book.add_bid(50, 100);
+    book.add_ask(70, 100);
+
+    EXPECT_FALSE(book.buy(70, 110, true));
+    EXPECT_TRUE(book.buy(70, 100, true));
+
+    EXPECT_FALSE(book.sell(50, 110, true));
+    EXPECT_TRUE(book.sell(50, 100, true));
+
+    EXPECT_TRUE(book.is_empty());
+}
