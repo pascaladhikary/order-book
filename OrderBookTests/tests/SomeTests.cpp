@@ -56,3 +56,18 @@ TEST(OrderBookTests, LimitOrder) {
 
     EXPECT_TRUE(book.is_empty());
 }
+
+TEST(OrderBookTests, MarketOrder) {
+    OrderBook book;
+    book.add_bid(50, 100);
+    book.add_ask(70, 100);
+    book.add_ask(75, 75);
+
+    EXPECT_FALSE(book.buy(-1, 176, false));
+    EXPECT_TRUE(book.buy(-1, 175, false));
+
+    EXPECT_FALSE(book.sell(-1, 110, false));
+    EXPECT_TRUE(book.sell(-1, 100, false));
+
+    EXPECT_TRUE(book.is_empty());
+}

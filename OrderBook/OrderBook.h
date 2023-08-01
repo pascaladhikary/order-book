@@ -4,14 +4,15 @@
 #include <boost/optional.hpp>
 
 class OrderBook {
-    // price, # to be bought/sold at
+    int bid_depth_, ask_depth_ = 0;
     std::map<int, int> bids_, asks_;
     void add(int price, int amount, bool bid);
     void remove(int price, int amount, bool bid);
     bool limit_order(int price, int amount, bool buy);
-    bool market_order(int price, int amount, bool buy);
+    bool market_order(int amount, bool buy);
 
 public:
+    OrderBook();
     struct BidAsk {
         typedef boost::optional<std::pair<int, int>> Entry;
         Entry bid, ask;
